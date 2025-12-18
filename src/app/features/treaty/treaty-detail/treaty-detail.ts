@@ -1,0 +1,28 @@
+import { Component, OnInit } from '@angular/core';
+import { Treaty } from '../../../models/treaty.model';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { TreatyService } from '../../../services/treaty.service';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
+@Component({
+  selector: 'app-treaty-detail',
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
+  templateUrl: './treaty-detail.html',
+  styleUrl: './treaty-detail.css',
+})
+export class TreatyDetail implements OnInit {
+  treaty?: Treaty;
+
+  constructor(private route: ActivatedRoute, private treatyService: TreatyService) {}
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.treatyService.list().subscribe(all => {
+        this.treaty = all.find(t => t.treatyId === id);
+      });
+    }
+  }
+}
