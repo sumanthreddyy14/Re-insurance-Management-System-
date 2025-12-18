@@ -6,4 +6,5 @@ export interface Treaty {
   startDate: string; // ISO string or date
   endDate: string;
   status: 'ACTIVE' | 'EXPIRED' | 'ARCHIVED';
+  renewalDate?: string;
 }

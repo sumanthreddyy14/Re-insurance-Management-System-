@@ -1,19 +1,26 @@
+/* Card styling */
 mat-card {
-  margin: 16px;
-  padding: 16px;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #f9f9f9);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  mat-card-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: var(--mat-sys-on-surface);
-  }
+mat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
 
-  mat-card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+mat-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #3f51b5;
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 /* Filters row */
@@ -21,18 +28,25 @@ mat-card {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  align-items: center;
+  align-items: flex-end;
+}
 
-  mat-form-field {
-    flex: 1 1 200px;
-    min-width: 180px;
-  }
+.filters mat-form-field {
+  flex: 1 1 200px;
+  min-width: 180px;
+}
 
-  button,
-  a[mat-button] {
-    align-self: flex-end;
-    margin-top: 4px;
-  }
+.filters button,
+.filters a[mat-button] {
+  height: 44px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.filters button:hover,
+.filters a[mat-button]:hover {
+  transform: scale(1.05);
 }
 
 /* Full-width search bar */
@@ -40,40 +54,81 @@ mat-card {
   width: 100%;
 }
 
+.full input {
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.full input:focus {
+  box-shadow: 0 0 6px rgba(63, 81, 181, 0.5);
+}
+
 /* Table styling */
 .table-wrapper {
   overflow-x: auto;
   border: 1px solid var(--mat-sys-outline);
-  border-radius: 4px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  th.mat-header-cell {
-    font-weight: 600;
-    background-color: var(--mat-sys-surface-container);
-  }
+th.mat-header-cell {
+  font-weight: 600;
+  background-color: #f3f4f6;
+  color: #374151;
+  text-transform: uppercase;
+  font-size: 13px;
+}
 
-  td.mat-cell {
-    padding: 8px;
-  }
+td.mat-cell {
+  padding: 12px;
+  transition: background-color 0.3s ease;
+}
 
-  tr.mat-row:hover {
-    background-color: var(--mat-sys-surface-container-high);
-  }
+tr.mat-row:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tr.mat-row:hover {
+  background-color: #e8f0fe;
+  cursor: pointer;
 }
 
 /* Chips for status */
 mat-chip {
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: transform 0.2s ease;
+}
+
+mat-chip:hover {
+  transform: scale(1.1);
+}
+
+/* Actions buttons */
+td.mat-cell a {
+  margin-right: 8px;
+  font-weight: 500;
+  border-radius: 6px;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+td.mat-cell a:hover {
+  transform: translateY(-2px);
 }
 
 /* Paginator spacing */
 mat-paginator {
-  margin-top: 12px;
+  margin-top: 16px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 8px;
 }
 
 /* Loading spinner */
@@ -81,9 +136,16 @@ mat-paginator {
   display: flex;
   justify-content: center;
   padding: 16px;
+}
 
-  mat-progress-spinner {
-    width: 40px;
-    height: 40px;
+mat-progress-spinner {
+  width: 50px;
+  height: 50px;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,7 +1,7 @@
-/* Card styling */
+/* Card container */
 mat-card {
-  margin: 24px auto;
-  padding: 24px;
+  margin: 32px auto;
+  padding: 28px;
   max-width: 700px;
   border-radius: 12px;
   background: linear-gradient(145deg, #ffffff, #f9f9f9);
@@ -16,17 +16,17 @@ mat-card:hover {
 
 /* Title */
 mat-card-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  margin-bottom: 16px;
-  color: #3f51b5;
+  margin-bottom: 20px;
+  color: #1976d2;
   text-align: center;
   letter-spacing: 0.5px;
 }
 
 /* Content */
 mat-card-content p {
-  margin: 10px 0;
+  margin: 12px 0;
   font-size: 15px;
   color: #333;
   line-height: 1.6;
@@ -34,7 +34,7 @@ mat-card-content p {
 }
 
 mat-card-content p strong {
-  color: #1976d2;
+  color: #3f51b5;
 }
 
 mat-card-content p:hover {
@@ -46,26 +46,16 @@ mat-card-actions {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
-mat-card-actions a[mat-button] {
+a[mat-button] {
   font-weight: 600;
   border-radius: 6px;
   text-transform: capitalize;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-mat-card-actions a[mat-button]:hover {
+a[mat-button]:hover {
   transform: translateY(-2px);
-}
-
-/* Not found card */
-mat-card:not(:has(.treaty)) {
-  background: #fff3f3;
-  border: 1px solid #f44336;
-}
-
-mat-card-title:not(:has(.treaty)) {
-  color: #f44336;
 }

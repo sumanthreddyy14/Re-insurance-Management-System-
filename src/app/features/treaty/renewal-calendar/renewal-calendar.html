@@ -1,29 +1,67 @@
 <mat-card>
   <mat-card-title>Renewal Calendar</mat-card-title>
   <mat-card-content>
-    <table mat-table [dataSource]="upcomingRenewals" class="mat-elevation-z2">
+    <!-- Show table only if there are upcoming renewals -->
+    <table
+      mat-table
+      [dataSource]="upcomingRenewals"
+      class="mat-elevation-z2"
+      *ngIf="upcomingRenewals.length > 0"
+    >
+      <!-- Treaty ID -->
       <ng-container matColumnDef="treatyId">
         <th mat-header-cell *matHeaderCellDef>ID</th>
         <td mat-cell *matCellDef="let row">{{ row.treatyId }}</td>
       </ng-container>
 
+      <!-- Reinsurer -->
       <ng-container matColumnDef="reinsurerName">
         <th mat-header-cell *matHeaderCellDef>Reinsurer</th>
         <td mat-cell *matCellDef="let row">{{ row.reinsurerName }}</td>
       </ng-container>
 
+      <!-- End Date -->
       <ng-container matColumnDef="endDate">
         <th mat-header-cell *matHeaderCellDef>End Date</th>
         <td mat-cell *matCellDef="let row">{{ row.endDate }}</td>
       </ng-container>
 
+      <!-- Status -->
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+        <td mat-cell *matCellDef="let row">
+          <mat-chip
+            *ngIf="row.status === 'ACTIVE'"
+            color="primary"
+            selected
+          >
+            {{ row.status }}
+          </mat-chip>
+          <mat-chip
+            *ngIf="row.status === 'EXPIRED'"
+            color="warn"
+            selected
+          >
+            {{ row.status }}
+          </mat-chip>
+          <mat-chip
+            *ngIf="row.status === 'ARCHIVED'"
+            color="accent"
+            selected
+          >
+            {{ row.status }}
+          </mat-chip>
+        </td>
       </ng-container>
 
+      <!-- Header and row definitions -->
       <tr mat-header-row *matHeaderRowDef="['treatyId','reinsurerName','endDate','status']"></tr>
       <tr mat-row *matRowDef="let row; columns: ['treatyId','reinsurerName','endDate','status'];"></tr>
     </table>
+
+    <!-- Fallback message -->
+    <div *ngIf="upcomingRenewals.length === 0" class="no-renewals">
+      <p>No upcoming renewals within the next 90 days.</p>
+    </div>
   </mat-card-content>
 </mat-card>

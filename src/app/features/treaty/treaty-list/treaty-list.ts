@@ -56,23 +56,50 @@ export class TreatyList implements OnInit {
     this.fetch();
   }
 
-
 fetch(): void {
   this.loading = true;
-  this.treatyService.list().subscribe({
-    next: (res) => {
-      this.dataSource.data = res;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.loading = false;
-      this.cdr.detectChanges(); // ✅ safe update
-    },
-    error: () => {
-      this.loading = false;
-      this.cdr.detectChanges();
+  this.treatyService.list().subscribe(res => {
+    let filtered = res;
+
+    if (this.status) {
+      filtered = filtered.filter(t => t.status === this.status);
     }
+    if (this.type) {
+      filtered = filtered.filter(t => t.treatyType === this.type);
+    }
+    if (this.reinsurer) {
+      filtered = filtered.filter(t =>
+        t.reinsurerName.toLowerCase().includes(this.reinsurer.toLowerCase())
+      );
+    }
+
+    this.dataSource = new MatTableDataSource(filtered);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.loading = false;
   });
 }
+
+
+
+
+
+// fetch(): void {
+//   this.loading = true;
+//   this.treatyService.list().subscribe({
+//     next: (res) => {
+//       this.dataSource.data = res;
+//       this.dataSource.paginator = this.paginator;
+//       this.dataSource.sort = this.sort;
+//       this.loading = false;
+//       this.cdr.detectChanges(); 
+//     },
+//     error: () => {
+//       this.loading = false;
+//       this.cdr.detectChanges();
+//     }
+//   });
+// }
   applyFilter(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();

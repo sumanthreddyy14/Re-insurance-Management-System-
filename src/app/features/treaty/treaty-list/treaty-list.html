@@ -22,11 +22,12 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Reinsurer ID</mat-label>
+        <mat-label>Reinsurer</mat-label>
         <input matInput [(ngModel)]="reinsurer" />
       </mat-form-field>
 
       <button mat-raised-button color="primary" (click)="fetch()">Apply</button>
+      <!-- <button mat-raised-button color="primary" (click)="loadDummyData()">Apply</button> -->
       <a mat-button color="accent" routerLink="/treaties/new">New Treaty</a>
     </div>
 

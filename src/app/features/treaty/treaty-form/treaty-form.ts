@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { TreatyService } from '../../../services/treaty.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-treaty-form',
@@ -30,18 +32,32 @@ import { TreatyService } from '../../../services/treaty.service';
 })
 export class TreatyForm {
   form: FormGroup;
-  
 
-  constructor(private fb: FormBuilder, private treatyService: TreatyService) {
+  constructor(
+    private fb: FormBuilder,
+    private treatyService: TreatyService,
+    private route: ActivatedRoute
+  ) {
     this.form = this.fb.group({
-    treatyId: ['', Validators.required],
-    reinsurerName: ['', Validators.required],
-    treatyType: ['', Validators.required],
-    coverageLimit: [0, [Validators.required, Validators.min(1)]],
-    startDate: ['', Validators.required],
-    endDate: ['', Validators.required],
-    status: ['', Validators.required],
-  });
+      treatyId: ['', Validators.required],
+      reinsurerName: ['', Validators.required],
+      treatyType: ['', Validators.required],
+      coverageLimit: [0, [Validators.required, Validators.min(1)]],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      status: ['', Validators.required],
+    });
+  }
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.treatyService.getById(id).subscribe(t => {
+        if (t) {
+          this.form.patchValue(t); // ✅ pre-fill form fields
+        }
+      });
+    }
   }
 
   save(): void {
