@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { RiskCession } from '../../../models/risk-cession.model';
+import { RiskCessionService } from '../../../services/risk-cession.service';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
+@Component({
+  selector: 'app-risk-cession-list',
+   standalone: true,
+  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule],
+  templateUrl: './risk-cession-list.html',
+  styleUrl: './risk-cession-list.css',
+})
+export class RiskCessionList implements OnInit {
+  displayedColumns = ['cessionId', 'treatyId', 'policyId', 'cededPercentage', 'cededPremium', 'commission', 'createdAt'];
+  dataSource = new MatTableDataSource<RiskCession>([]);
+
+  constructor(private cessionService: RiskCessionService) {}
+
+  ngOnInit(): void {
+    this.cessionService.listAll().subscribe(data => (this.dataSource.data = data));
+  }
+}

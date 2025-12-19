@@ -23,7 +23,8 @@ export class TreatyService {
   private dummy: Treaty[] = [
     {
       treatyId: 'T001',
-      reinsurerName: 'Swiss Re',
+      reinsurerId: 'R001',
+      reinsurerName: 'Hari NTR',
       treatyType: 'PROPORTIONAL',
       coverageLimit: 5000000,
       startDate: '2025-01-01',
@@ -34,23 +35,36 @@ export class TreatyService {
 
     {
       treatyId: 'T002',
-      reinsurerName: 'Munich Re',
+      reinsurerId: 'R002',
+      reinsurerName: 'Ramu',
       treatyType: 'NON-PROPORTIONAL',
       coverageLimit: 3000000,
       startDate: '2024-01-01',
       endDate: '2024-12-31',
       status: 'EXPIRED',
-      renewalDate: '2024-12-15'
+      renewalDate: '2026-01-15'
     },
     {
       treatyId: 'T003',
-      reinsurerName: 'Hannover Re',
+      reinsurerId: 'R003',
+      reinsurerName: 'John',
       treatyType: 'PROPORTIONAL',
       coverageLimit: 7000000,
       startDate: '2023-01-01',
       endDate: '2023-12-31',
       status: 'ARCHIVED',
       renewalDate: '2024-10-15'
+    },
+    {
+      treatyId: 'T004',
+      reinsurerId: 'R004',
+      reinsurerName: 'Sumanth',
+      treatyType: 'PROPORTIONAL',
+      coverageLimit: 80000000,
+      startDate: '2025-01-01',
+      endDate: '2025-12-31',
+      status: 'ACTIVE',
+      renewalDate: '2026-01-15'
     }
   ];
 
