@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title>Create Recovery</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="recoveryForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Claim ID</mat-label>
+        <input matInput formControlName="claimId" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Treaty ID</mat-label>
+        <input matInput formControlName="treatyId" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Recovery Amount</mat-label>
+        <input matInput type="number" formControlName="recoveryAmount" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Recovery Date</mat-label>
+        <input matInput type="date" formControlName="recoveryDate" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="PENDING">PENDING</mat-option>
+          <mat-option value="COMPLETED">COMPLETED</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Save Recovery</button>
+    </form>
+  </mat-card-content>
+</mat-card>

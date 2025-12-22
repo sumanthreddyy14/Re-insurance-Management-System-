@@ -1,0 +1,73 @@
+mat-card {
+  margin: 24px auto;
+  max-width: 900px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+
+mat-card-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1976d2;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th {
+  background: #1976d2;
+  color: #ae1111;
+  font-weight: 600;
+  text-align: left;
+  padding: 14px;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+tr:hover td {
+  background-color: #f5faff;
+}
+
+a[mat-button] {
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 6px 14px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #e3f2fd;
+    transform: scale(1.05);
+  }
+}
+
+/* Status badges */
+td:nth-child(6) {
+  font-weight: 600;
+}
+
+td:nth-child(6):contains("PENDING") {
+  color: #f57c00;
+}
+
+td:nth-child(6):contains("COMPLETED") {
+  color: #2e7d32;
+}

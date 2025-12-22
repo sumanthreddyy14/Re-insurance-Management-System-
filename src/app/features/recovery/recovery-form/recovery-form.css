@@ -1,0 +1,62 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-card {
+  margin: 24px auto;
+  max-width: 600px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fdfdfd, #f7f9fc);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1976d2;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+mat-form-field {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 4px 8px;
+
+  ::ng-deep .mat-form-field-outline {
+    border-color: #1976d2 !important;
+  }
+
+  ::ng-deep .mat-form-field-label {
+    color: #1976d2 !important;
+    font-weight: 500;
+  }
+}
+
+button[type="submit"] {
+  align-self: flex-end;
+  background: #1976d2;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: #1565c0;
+    transform: scale(1.05);
+  }
+}

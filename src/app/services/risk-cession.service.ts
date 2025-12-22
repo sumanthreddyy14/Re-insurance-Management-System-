@@ -4,17 +4,37 @@ import { RiskCession } from '../models/risk-cession.model';
 
 @Injectable({ providedIn: 'root' })
 export class RiskCessionService {
-  // Dummy store
-  private cessions: RiskCession[] = [];
+  // private cessions: RiskCession[] = [];
+  private cessions: RiskCession[] = [
+  {
+    cessionId: 'C001',
+    treatyId: 'T001',
+    policyId: 'P1001',
+    cededPercentage: 50,
+    cededPremium: 6000,
+    commission: 600,
+    createdAt: new Date().toISOString(),
+    createdBy: 'admin'
+  },
+  {
+    cessionId: 'C002',
+    treatyId: 'T002',
+    policyId: 'P1002',
+    cededPercentage: 40,
+    cededPremium: 3200,
+    commission: 320,
+    createdAt: new Date().toISOString(),
+    createdBy: 'admin'
+  }
+];
 
-  // Dummy policies (replace with real source later)
+
   private policies: { policyId: string; premium: number }[] = [
     { policyId: 'P1001', premium: 12000 },
     { policyId: 'P1002', premium: 8000 },
     { policyId: 'P1003', premium: 15000 }
   ];
 
-  // Commission setup (optional)
   private defaultCommissionRate = 0.1; // 10%
 
   listByTreaty(treatyId: string): Observable<RiskCession[]> {
@@ -48,7 +68,7 @@ export class RiskCessionService {
       throw new Error(`Policy ${policyId} not found or missing premium.`);
     }
 
-    // Calculate premium and commission
+    
     const cededPremium = Number((policyPremium * (cededPercentage / 100)).toFixed(2));
     const rate = commissionRate ?? this.defaultCommissionRate;
     const commission = Number((cededPremium * rate).toFixed(2));

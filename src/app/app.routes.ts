@@ -7,6 +7,9 @@ import { ReinsurerDetail } from './features/reinsurer/reinsurer-detail/reinsurer
 import { ReinsurerList } from './features/reinsurer/reinsurer-list/reinsurer-list';
 import { RiskCessionList } from './features/risk-cession/risk-cession-list/risk-cession-list';
 import { RiskCession } from './features/risk-cession/risk-cession-form/risk-cession-form';
+import { RecoveryList } from './features/recovery/recovery-list/recovery-list';
+import { RecoveryFormComponent } from './features/recovery/recovery-form/recovery-form';
+import { RecoveryDetail } from './features/recovery/recovery-detail/recovery-detail';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'treaties', pathMatch: 'full' },
@@ -19,5 +22,8 @@ export const routes: Routes = [
   { path: 'reinsurers', component: ReinsurerList },
   { path: 'reinsurers/:id', component: ReinsurerDetail },
   { path: 'cessions', component: RiskCessionList },
-  { path: 'cessions/new', component: RiskCession }
+  { path: 'cessions/new', component: RiskCession },
+  { path: 'recoveries', component: RecoveryList },
+   { path: 'recoveries/new', component: RecoveryFormComponent }, 
+   { path: 'recoveries/:id', component: RecoveryDetail },
 ];
