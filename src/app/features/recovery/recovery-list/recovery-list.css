@@ -65,7 +65,7 @@ td:nth-child(6) {
 }
 
 td:nth-child(6):contains("PENDING") {
-  color: #f57c00;
+  color: #bc6411;
 }
 
 td:nth-child(6):contains("COMPLETED") {

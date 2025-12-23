@@ -5,11 +5,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Recovery } from '../../../models/recovery.model';
 import { RecoveryService } from '../../../services/recovery.service';
+import { SettlementTimeline } from '../settlement-timeline/settlement-timeline';
+import { StatusBadge } from '../status-badge/status-badge';
 
 @Component({
   selector: 'app-recovery-detail',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule,RouterLink],
+  imports: [CommonModule, MatCardModule, MatButtonModule,RouterLink,SettlementTimeline,StatusBadge],
   templateUrl: './recovery-detail.html',
   styleUrls: ['./recovery-detail.css']
 })

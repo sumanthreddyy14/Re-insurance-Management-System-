@@ -71,9 +71,9 @@ export class RecoveryService {
           if (treaty) {
             recoveries.push({
               recoveryId: 'REC' + (index + 1).toString().padStart(3, '0'),
-              claimId: 'C' + (index + 1001), // demo claim IDs
+              claimId: 'C' + (index + 1001), 
               treatyId: treaty.treatyId,
-              recoveryAmount: c.cededPremium, // use ceded premium as recovery amount
+              recoveryAmount: c.cededPremium, 
               recoveryDate: new Date().toISOString(),
               status: 'PENDING'
             });

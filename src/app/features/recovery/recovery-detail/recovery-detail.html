@@ -6,15 +6,21 @@
     <p><strong>Treaty:</strong> {{ recovery.treatyId }}</p>
     <p><strong>Amount:</strong> {{ recovery.recoveryAmount | currency }}</p>
     <p><strong>Date:</strong> {{ recovery.recoveryDate | date:'yyyy-MM-dd' }}</p>
-    <p><strong>Status:</strong> {{ recovery.status }}</p>
+    <p><strong>Status:</strong> 
+      <app-status-badge [status]="recovery.status"></app-status-badge>
+    </p>
+
+    <app-settlement-timeline [timeline]="[
+      { date: recovery.recoveryDate, label: 'Recovery Initiated', status: recovery.status }
+    ]"></app-settlement-timeline>
   </mat-card-content>
   <mat-card-actions>
-  <button mat-raised-button color="primary" [routerLink]="['/recoveries']">
-    Back to List
-  </button>
-</mat-card-actions>
-
+    <button mat-raised-button color="primary" [routerLink]="['/recoveries']">
+      Back to List
+    </button>
+  </mat-card-actions>
 </mat-card>
+
 
 <mat-card *ngIf="!recovery">
   <mat-card-title>Recovery not found</mat-card-title>
