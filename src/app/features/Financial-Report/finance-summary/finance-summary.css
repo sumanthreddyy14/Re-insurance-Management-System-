@@ -1,0 +1,239 @@
+
+/* ---------- Global tokens (override per app theme if needed) ---------- */
+:root {
+  --card-bg: #ffffff;
+  --card-border: rgba(0,0,0,0.08);
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --accent: #3b82f6;       /* Tailwind-esque blue */
+  --accent-2: #06b6d4;     /* cyan */
+  --success: #10b981;      /* green */
+  --warning: #f59e0b;      /* amber */
+
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-sm: 0 2px 8px rgba(16, 24, 40, 0.10);
+  --shadow-md: 0 8px 24px rgba(16, 24, 40, 0.12);
+
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  --grid-gap: 1rem;
+}
+
+/* --------- Optional dark mode via OS setting --------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-bg: #101317;
+    --card-border: rgba(255,255,255,0.08);
+    --text-primary: #f3f4f6;
+    --text-secondary: #cbd5e1;
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* --------- Root card --------- */
+mat-card {
+  position: relative;
+  border-radius: var(--radius);
+  background: radial-gradient(1200px 400px at 10% -50%, rgba(59,130,246,0.12), transparent 40%), 
+              radial-gradient(1200px 400px at 110% 150%, rgba(6,182,212,0.12), transparent 40%), 
+              var(--card-bg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+  transition: box-shadow 220ms ease, transform 220ms ease, border-color 220ms ease;
+}
+
+mat-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --------- Title --------- */
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  padding: 1rem 1.25rem 0.5rem;
+  letter-spacing: .2px;
+}
+
+/* subtle underline accent */
+mat-card-title::after {
+  content: "";
+  flex: 1;
+  margin-left: .5rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: .25;
+  border-radius: 2px;
+}
+
+/* --------- Card content --------- */
+mat-card-content {
+  padding: .25rem 1.25rem 1.25rem;
+  color: var(--text-secondary);
+}
+
+/* --------- Grid layout --------- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  margin-top: .75rem;
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------- Metric cards --------- */
+.summary-grid .metric {
+  background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.35)),
+              var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xs);
+  padding: 1rem 1rem 1.1rem;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* top accent bar */
+.summary-grid .metric::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: .85;
+}
+
+/* interactive hover */
+.summary-grid .metric:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(59,130,246,0.25);
+}
+
+/* Animated background spark */
+.summary-grid .metric::after {
+  content: "";
+  position: absolute;
+  width: 140px; height: 140px;
+  right: -40px; bottom: -40px;
+  background: radial-gradient(circle at center, rgba(59,130,246,0.20), rgba(6,182,212,0.18) 60%, transparent 65%);
+  filter: blur(30px);
+  opacity: 0.55;
+  animation: floatPulse 6s ease-in-out infinite;
+}
+
+@keyframes floatPulse {
+  0%, 100% { transform: translate(0,0) scale(1); opacity: .45; }
+  50% { transform: translate(-8px, -6px) scale(1.06); opacity: .65; }
+}
+
+/* --------- Metric content --------- */
+.summary-grid .metric .label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: .25px;
+  text-transform: uppercase;
+}
+
+.summary-grid .metric .value {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: .35rem;
+  letter-spacing: .2px;
+}
+
+/* Optional: color hints per metric by leveraging label text */
+.summary-grid .metric:has(.label:contains("Ceded Premiums")) .value {
+  color: var(--accent);
+}
+.summary-grid .metric:has(.label:contains("Recoveries")) .value {
+  color: var(--success);
+}
+.summary-grid .metric:has(.label:contains("Outstanding")) .value {
+  color: var(--warning);
+}
+
+/* Fallback for browsers without :has() or :contains() (most Angular apps):
+   apply explicit classes in HTML if needed, e.g., <mat-card class="metric metric--recoveries"> */
+.metric--ceded .value { color: var(--accent); }
+.metric--recoveries .value { color: var(--success); }
+.metric--outstanding .value { color: var(--warning); }
+
+/* --------- Loading shimmer --------- */
+.loading {
+  position: relative;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--card-border);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-align: center;
+  letter-spacing: .3px;
+}
+
+.loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0.5),
+      rgba(255,255,255,0)
+    );
+  animation: shimmer 1.6s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* --------- Empty state --------- */
+.empty {
+  margin-top: .75rem;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  background:
+    repeating-linear-gradient(135deg, rgba(59,130,246,0.08), rgba(59,130,246,0.08) 10px, transparent 10px, transparent 20px),
+    var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+}
+
+/* --------- Accessibility + minor refinements --------- */
+.summary-grid .metric:focus-within,
+.summary-grid .metric:focus {
+  outline: 2px solid rgba(59,130,246,0.45);
+  outline-offset: 2px;
+}
+
+.summary-grid .metric .value {
+  /* Digit-friendly tabular lining */
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Tighten Material default spacing a bit for compact look */
+mat-card .mat-mdc-card-content {
+  padding: 0; /* if Angular Material adds extra */
+}

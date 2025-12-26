@@ -1,0 +1,108 @@
+
+/* Container card spacing */
+mat-card {
+  margin: 12px 0;
+}
+
+mat-card-title {
+  font-weight: 600;
+}
+
+/* ------------------------------
+   Filters layout
+------------------------------ */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 12px;
+  align-items: end; /* align the button with inputs */
+  margin-bottom: 16px;
+
+  /* Keep form fields full width within grid cells */
+  mat-form-field {
+    width: 100%;
+  }
+
+  /* Button spacing */
+  button {
+    height: 48px;
+  }
+}
+
+/* Make filters responsive */
+@media (max-width: 1024px) {
+  .filters {
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .filters {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------
+   Table styles
+------------------------------ */
+table {
+  width: 100%;
+  border-collapse: collapse; /* ensure consistent spacing */
+}
+
+/* Header cells */
+th.mat-header-cell {
+  font-weight: 600;
+  color: #444;
+  background: #f7f7f7;
+}
+
+/* Body cells */
+td.mat-cell,
+th.mat-header-cell {
+  padding: 12px 8px;
+}
+
+/* Add subtle row hover */
+tr.mat-row:hover {
+  background: #fafafa;
+}
+
+/* Numeric columns alignment (optional) */
+td.mat-cell:nth-child(3),
+td.mat-cell:nth-child(4),
+td.mat-cell:nth-child(5) {
+  text-align: right; /* Ceded Premiums, Recoveries, Outstanding */
+}
+
+/* Actions column alignment */
+td.mat-cell:last-child {
+  text-align: center;
+}
+
+/* ------------------------------
+   Empty state
+------------------------------ */
+.empty {
+  color: #777;
+  margin-top: 12px;
+}
+
+/* ------------------------------
+   Export button inside actions
+------------------------------ */
+app-export-button button {
+  margin: 4px 0;
+}
+
+/* Optional: compact table on small screens */
+@media (max-width: 768px) {
+  td.mat-cell,
+  th.mat-header-cell {
+    padding: 10px 6px;
+  }
+}
