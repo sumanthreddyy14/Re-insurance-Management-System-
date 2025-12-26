@@ -58,7 +58,6 @@
       <tr mat-header-row *matHeaderRowDef="['treatyId','reinsurerName','endDate','status']"></tr>
       <tr mat-row *matRowDef="let row; columns: ['treatyId','reinsurerName','endDate','status'];"></tr>
     </table>
-
     <!-- Fallback message -->
     <div *ngIf="upcomingRenewals.length === 0" class="no-renewals">
       <p>No upcoming renewals within the next 90 days.</p>

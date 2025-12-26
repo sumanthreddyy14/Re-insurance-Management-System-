@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { RecoveryService } from '../../../services/recovery.service';
 import { Recovery } from '../../../models/recovery.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recovery-form',

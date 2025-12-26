@@ -25,7 +25,7 @@ export class RenewalCalendar implements OnInit {
     this.upcomingRenewals = treaties.filter(t => {
     const end = new Date(t.endDate);
     const diff = (end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
-    console.log(t.treatyId, t.endDate, diff); // ✅ debug
+    console.log(t.treatyId, t.endDate, diff);
     return diff >= 0 && diff <= 90;
   });
 });

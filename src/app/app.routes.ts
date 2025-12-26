@@ -13,7 +13,7 @@ import { RecoveryDetail } from './features/recovery/recovery-detail/recovery-det
 import { AdminDashboard } from './features/Admin/admin-dashboard/admin-dashboard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'treaties', pathMatch: 'full' },
+    { path: '', redirectTo: 'admin/dashboard', pathMatch: 'full' },
   { path: 'treaties', component: TreatyList },
   { path: 'treaties/new', component: TreatyForm },
   { path: 'treaties/:id/edit', component: TreatyForm },
