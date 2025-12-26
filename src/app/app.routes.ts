@@ -10,6 +10,7 @@ import { RiskCession } from './features/risk-cession/risk-cession-form/risk-cess
 import { RecoveryList } from './features/recovery/recovery-list/recovery-list';
 import { RecoveryFormComponent } from './features/recovery/recovery-form/recovery-form';
 import { RecoveryDetail } from './features/recovery/recovery-detail/recovery-detail';
+import { AdminDashboard } from './features/Admin/admin-dashboard/admin-dashboard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'treaties', pathMatch: 'full' },
@@ -26,4 +27,6 @@ export const routes: Routes = [
   { path: 'recoveries', component: RecoveryList },
    { path: 'recoveries/new', component: RecoveryFormComponent }, 
    { path: 'recoveries/:id', component: RecoveryDetail },
+   { path: 'admin/dashboard', component: AdminDashboard }
+
 ];

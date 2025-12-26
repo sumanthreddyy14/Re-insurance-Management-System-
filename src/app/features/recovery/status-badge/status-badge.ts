@@ -9,5 +9,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './status-badge.css',
 })
 export class StatusBadge {
-  @Input() status: 'PENDING' | 'COMPLETED' = 'PENDING';
+@Input() status: 'PENDING' | 'COMPLETED' = 'PENDING';
 }
+  

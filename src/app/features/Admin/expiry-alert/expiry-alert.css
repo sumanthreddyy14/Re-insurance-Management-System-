@@ -1,0 +1,50 @@
+.alert-card {
+  margin: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff3f3; /* soft red background for alert */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-left: 6px solid #e53935; /* red accent border */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.alert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.alert-card mat-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #b71c1c; /* dark red */
+  margin-bottom: 12px;
+}
+
+.alert-card mat-card-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alert-card mat-card-content li {
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.alert-card mat-card-content li:hover {
+  background: #ffe5e5;
+  transform: scale(1.02);
+}
+
+.alert-card mat-card-content .date {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}

@@ -81,9 +81,6 @@ fetch(): void {
 }
 
 
-
-
-
 // fetch(): void {
 //   this.loading = true;
 //   this.treatyService.list().subscribe({

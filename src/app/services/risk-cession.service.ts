@@ -35,7 +35,7 @@ export class RiskCessionService {
     { policyId: 'P1003', premium: 15000 }
   ];
 
-  private defaultCommissionRate = 0.1; // 10%
+  private defaultCommissionRate = 0.1; 
 
   listByTreaty(treatyId: string): Observable<RiskCession[]> {
     return of(this.cessions.filter(c => c.treatyId === treatyId));
@@ -49,17 +49,16 @@ export class RiskCessionService {
     return this.policies.find(p => p.policyId === policyId)?.premium;
   }
 
-  // Core allocation function
+  
   allocateRisk(params: {
     treatyId: string;
     policyId: string;
-    cededPercentage: number; // 0–100
-    commissionRate?: number; // override optional
+    cededPercentage: number; 
+    commissionRate?: number; 
     createdBy: string;
   }): Observable<RiskCession> {
     const { treatyId, policyId, cededPercentage, commissionRate, createdBy } = params;
 
-    // Basic validations
     if (cededPercentage <= 0 || cededPercentage > 100) {
       throw new Error('Ceded percentage must be between 0 and 100.');
     }
@@ -73,7 +72,6 @@ export class RiskCessionService {
     const rate = commissionRate ?? this.defaultCommissionRate;
     const commission = Number((cededPremium * rate).toFixed(2));
 
-    // Generate cession record
     const cession: RiskCession = {
       cessionId: 'C' + (this.cessions.length + 1).toString().padStart(4, '0'),
       treatyId,
@@ -85,7 +83,6 @@ export class RiskCessionService {
       createdBy
     };
 
-    // Persist in-memory
     this.cessions.push(cession);
 
     return of(cession);

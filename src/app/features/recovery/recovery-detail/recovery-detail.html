@@ -6,7 +6,7 @@
     <p><strong>Treaty:</strong> {{ recovery.treatyId }}</p>
     <p><strong>Amount:</strong> {{ recovery.recoveryAmount | currency }}</p>
     <p><strong>Date:</strong> {{ recovery.recoveryDate | date:'yyyy-MM-dd' }}</p>
-    <p><strong>Status:</strong> 
+    <p><strong>Status:</strong>
       <app-status-badge [status]="recovery.status"></app-status-badge>
     </p>
 

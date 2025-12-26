@@ -1,40 +1,72 @@
+mat-card {
+  margin: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+mat-card:hover {
+  transform: translateY(-4px);
+}
+
+mat-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #3f51b5; /* Material Indigo */
+  margin-bottom: 12px;
+}
+
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .timeline-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px;
+  padding: 10px 14px;
   border-radius: 8px;
-  transition: background-color 0.2s ease;
+  background: #f9f9f9;
+  transition: background 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
 
-  &.completed {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-  }
+.timeline-item:hover {
+  background: #e8f0fe;
+  transform: scale(1.02);
+}
 
-  &.pending {
-    background-color: #fff3e0;
-    color: #f57c00;
-  }
+.timeline-item mat-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
 
-  mat-icon {
-    font-size: 28px;
-  }
+.details {
+  display: flex;
+  flex-direction: column;
+}
 
-  .details {
-    display: flex;
-    flex-direction: column;
-    .label {
-      font-weight: 600;
-    }
-    .date {
-      font-size: 0.85rem;
-      color: #555;
-    }
-  }
+.details .label {
+  font-weight: 500;
+  color: #333;
+}
+
+.details .date {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Status-based colors */
+.timeline-item.completed mat-icon {
+  color: #4caf50; /* Green */
+}
+
+.timeline-item.pending mat-icon {
+  color: #ff9800; /* Orange */
+}
+
+.timeline-item.inprogress mat-icon {
+  color: #2196f3; /* Blue */
 }
