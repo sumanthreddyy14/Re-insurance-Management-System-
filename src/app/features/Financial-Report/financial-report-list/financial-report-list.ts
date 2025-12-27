@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { ExportButton } from '../export-button/export-button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-financial-report-list',
@@ -17,7 +18,8 @@ import { ExportButton } from '../export-button/export-button';
     FormsModule,
     ExportButton,
     MatCardModule,
-    MatTableModule,        // 👈 REQUIRED for mat-table structural directives
+    MatInputModule,
+    MatTableModule,   
     MatButtonModule,
     MatFormFieldModule
   ],
