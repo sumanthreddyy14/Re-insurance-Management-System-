@@ -30,7 +30,7 @@ export class RiskCessionService {
 
 
   private policies: { policyId: string; premium: number }[] = [
-    { policyId: 'P1001', premium: 12000 },
+    { policyId: 'P1001', premium: 11000 },
     { policyId: 'P1002', premium: 8000 },
     { policyId: 'P1003', premium: 15000 }
   ];
