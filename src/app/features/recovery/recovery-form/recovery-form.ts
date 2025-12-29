@@ -8,7 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { RecoveryService } from '../../../services/recovery.service';
 import { Recovery } from '../../../models/recovery.model';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-recovery-form',
@@ -21,7 +22,9 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink,
+    QuickLinks
   ],
   templateUrl: './recovery-form.html',
   styleUrls: ['./recovery-form.css']

@@ -6,11 +6,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-renewal-calendar',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule,MatChipsModule],
+  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule,MatChipsModule,QuickLinks],
   templateUrl: './renewal-calendar.html',
   styleUrl: './renewal-calendar.css',
 })

@@ -9,12 +9,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-risk-cession-form',
   standalone: true,
   imports: [
     CommonModule,
+    QuickLinks,
     FormsModule,
     MatCardModule,
     MatFormFieldModule,

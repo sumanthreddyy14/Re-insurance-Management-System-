@@ -30,6 +30,7 @@ ngOnInit(): void {
     this.expiredTreaties = treaties
       .filter(t => t.status === 'EXPIRED')
       .map(t => ({
+        
         id: t.treatyId,
         name: t.treatyId,
         endDate: new Date(t.endDate)   

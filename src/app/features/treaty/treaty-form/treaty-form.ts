@@ -11,12 +11,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { TreatyService } from '../../../services/treaty.service';
 import { ActivatedRoute } from '@angular/router';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 
 @Component({
   selector: 'app-treaty-form',
   standalone: true,
   imports: [CommonModule,
+    QuickLinks,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,

@@ -5,11 +5,12 @@ import { ReinsurerService } from '../../../services/reinsurer.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-reinsurer-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule,QuickLinks],
   templateUrl: './reinsurer-detail.html',
   styleUrl: './reinsurer-detail.css',
 })

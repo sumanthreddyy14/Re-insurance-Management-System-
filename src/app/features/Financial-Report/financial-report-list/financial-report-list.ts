@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { ExportButton } from '../export-button/export-button';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-financial-report-list',
@@ -21,7 +23,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatTableModule,   
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule, MatNativeDateModule
   ],
   templateUrl: './financial-report-list.html',
   styleUrl: './financial-report-list.css',
@@ -35,26 +38,28 @@ export class FinancialReportList {
   // optional: provide select data in UI
   treatyId?: string;
   reinsurerId?: string;
-  from?: string;
-  to?: string;
-
-  displayedColumns = ['reportId', 'generatedDate', 'cededPremiums', 'recoveries', 'outstanding', 'actions'];
-
+  from?: Date; 
+  to?: Date;
   constructor(private financeService: FinanceService) {
     this.financeService.listReports().subscribe(r => (this.reports = r));
   }
 
-  generate(): void {
-    this.generating = true;
-    const filters: FinanceFilters = {
-      from: this.from,
-      to: this.to,
-      treatyId: this.treatyId,
-      reinsurerId: this.reinsurerId
-    };
-    this.financeService.generateReport(filters).subscribe({
-      next: () => (this.generating = false),
-      error: () => (this.generating = false)
-    });
-  }
+  displayedColumns = ['reportId', 'generatedDate', 'cededPremiums', 'recoveries', 'outstanding', 'actions'];
+
+
+generate(): void {
+  this.generating = true;
+
+  const filters: FinanceFilters = {
+    from: this.from ? this.from.toISOString() : undefined,
+    to: this.to ? this.to.toISOString() : undefined,
+    treatyId: this.treatyId,
+    reinsurerId: this.reinsurerId
+  };
+
+  this.financeService.generateReport(filters).subscribe({
+    next: () => (this.generating = false),
+    error: () => (this.generating = false)
+  });
+}
 }

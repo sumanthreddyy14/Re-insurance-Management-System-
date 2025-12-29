@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-reinsurer-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule,QuickLinks],
   templateUrl: './reinsurer-list.html',
   styleUrl: './reinsurer-list.css',
 })

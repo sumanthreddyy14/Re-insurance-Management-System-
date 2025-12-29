@@ -22,7 +22,6 @@ export class FinanceService {
 
   // In-memory recoveries store (self-contained so you don’t need an extra service file)
   private readonly _recoveries$ = new BehaviorSubject<Recovery[]>([
-    // Optional initial data for demo
     {
       recoveryId: 'R0001',
       claimId: 'C1001',
@@ -54,10 +53,6 @@ export class FinanceService {
     return this.computeMetrics(filters).pipe(map(ctx => ctx.totals));
   }
 
-  /**
-   * Balance table data for balance-table.component
-   * @param groupBy 'reinsurer' | 'treaty'
-   */
   getBalanceTable(
     filters: FinanceFilters = {},
     groupBy: 'reinsurer' | 'treaty' = 'reinsurer'
@@ -92,11 +87,7 @@ export class FinanceService {
     );
   }
 
-  // -------------------- Report APIs --------------------
-
-  /**
-   * Generate a FinancialReport and persist it in the in-memory list.
-   */
+ 
   generateReport(filters: FinanceFilters = {}): Observable<FinancialReport> {
     return this.computeMetrics(filters).pipe(
       map(({ totals, byTreaty, byReinsurer }) => {
@@ -115,14 +106,10 @@ export class FinanceService {
     );
   }
 
-  /**
-   * List previously generated reports (for financial-report-list.component)
-   */
+
   listReports(): Observable<FinancialReport[]> {
     return this._reports$.asObservable();
   }
-
-  // -------------------- Export helpers --------------------
 
   exportReportCSV(report: FinancialReport): Blob {
     const lines: string[] = [];
@@ -172,8 +159,6 @@ export class FinanceService {
     return new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
   }
 
-  // -------------------- Recoveries Store (self-contained) --------------------
-
   listRecoveries(): Observable<Recovery[]> {
     return this._recoveries$.asObservable();
   }
@@ -209,10 +194,6 @@ export class FinanceService {
     return of(this._recoveries$.value.filter(r => r.status === status));
   }
 
-  /**
-   * Optional: seed synthetic recoveries from existing cessions (demo/testing).
-   * Maps each cession to a PENDING recovery with recoveryAmount = cededPremium.
-   */
   seedRecoveriesFromCessions({ replace = false }: { replace?: boolean } = {}): Observable<Recovery[]> {
     return combineLatest([this.cessionService.listAll(), this.treatyService.list()]).pipe(
       map(([cessions, treaties]) => {
@@ -235,15 +216,6 @@ export class FinanceService {
     );
   }
 
-  // -------------------- Core computation --------------------
-
-  /**
-   * Combines cessions, recoveries, treaties and computes:
-   * - Totals
-   * - Breakdown by treaty
-   * - Breakdown by reinsurer
-   * Also returns a treatyIndex for quick metadata lookup.
-   */
   private computeMetrics(filters: FinanceFilters = {}): Observable<{
     totals: FinancialMetrics;
     byTreaty: Record<string, FinancialMetrics>;
@@ -349,7 +321,6 @@ export class FinanceService {
   }
 }
 
-// -------------------- Helpers --------------------
 
 function sum(nums: number[]) { return nums.reduce((a, b) => a + b, 0); }
 function round2(n: number) { return Math.round(n * 100) / 100; }

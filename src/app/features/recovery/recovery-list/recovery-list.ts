@@ -7,12 +7,13 @@ import { RouterModule } from '@angular/router';
 import { Recovery } from '../../../models/recovery.model';
 import { RecoveryService } from '../../../services/recovery.service';
 import { StatusBadge } from '../status-badge/status-badge';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 
 @Component({
   selector: 'app-recovery-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule,StatusBadge],
+  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule,StatusBadge,QuickLinks],
   templateUrl: './recovery-list.html',
   styleUrls: ['./recovery-list.css']
 })

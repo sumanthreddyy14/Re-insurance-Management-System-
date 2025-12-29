@@ -5,10 +5,11 @@ import { TreatyService } from '../../../services/treaty.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-treaty-detail',
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule,QuickLinks],
   templateUrl: './treaty-detail.html',
   styleUrl: './treaty-detail.css',
 })

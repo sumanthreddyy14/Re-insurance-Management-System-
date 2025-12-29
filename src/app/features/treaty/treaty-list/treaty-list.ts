@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { ChangeDetectorRef } from '@angular/core';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-treaty-list',standalone: true,
@@ -31,7 +32,8 @@ import { ChangeDetectorRef } from '@angular/core';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatChipsModule
+    MatChipsModule,
+    QuickLinks
   ],
   templateUrl: './treaty-list.html',
   styleUrl: './treaty-list.css',

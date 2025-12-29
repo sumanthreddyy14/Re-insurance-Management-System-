@@ -1,3 +1,4 @@
+<app-quick-links></app-quick-links>
 <mat-card >
   <mat-card-title>Create Recovery</mat-card-title>
   <mat-card-content>
@@ -32,7 +33,9 @@
 
       <div class="form-actions d-flex justify-content-end"> 
         <button mat-raised-button color="primary" type="submit" class="me-2">Save Recovery</button> 
-      <button mat-button color="warn" routerLink="/recoveries">Cancel</button>
+      <button mat-raised-button color="primary" [routerLink]="['/recoveries']">
+      Cancel
+    </button>
       </div>
     </form>
   </mat-card-content>

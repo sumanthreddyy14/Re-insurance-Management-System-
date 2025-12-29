@@ -5,11 +5,12 @@ import { RiskCessionService } from '../../../services/risk-cession.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { QuickLinks } from '../../Admin/quick-links/quick-links';
 
 @Component({
   selector: 'app-risk-cession-list',
    standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule,QuickLinks],
   templateUrl: './risk-cession-list.html',
   styleUrl: './risk-cession-list.css',
 })
