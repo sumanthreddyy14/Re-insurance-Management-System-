@@ -75,4 +75,11 @@ export class TreatyService {
   getById(id: string): Observable<Treaty | undefined> {
     return of(this.dummy.find(t => t.treatyId === id));
   }
+
+  countActiveTreaties(): number { 
+    return this.dummy.filter(t => t.status === 'ACTIVE').length; 
+  } 
+  listAll(): Treaty[] { 
+    return this.dummy; 
+  }
 }

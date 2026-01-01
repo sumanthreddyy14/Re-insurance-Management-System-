@@ -52,6 +52,7 @@ import { Treaty } from '../models/treaty.model';
 
 @Injectable({ providedIn: 'root' })
 export class RecoveryService {
+  private recoveries: Recovery[] = [];
   constructor(
     private treatyService: TreatyService,
     private cessionService: RiskCessionService
@@ -79,10 +80,14 @@ export class RecoveryService {
             });
           }
         });
-
+        this.recoveries = recoveries;
         return recoveries;
       })
     );
   }
+
+ countPendingRecoveries(): number { 
+  return this.recoveries.filter((r: Recovery) => r.status === 'PENDING').length; 
+}
   
 }
