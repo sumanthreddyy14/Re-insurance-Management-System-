@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FinanceDashboard } from '../finance-dashboard/finance-dashboard';
 
 @Component({
   selector: 'app-balance-table',
@@ -14,7 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [
     CommonModule,
     MatCardModule,
-    MatTableModule,        // 👈 REQUIRED for mat-table structural directives
+    MatTableModule,        
     MatButtonModule,
     MatFormFieldModule
   ],

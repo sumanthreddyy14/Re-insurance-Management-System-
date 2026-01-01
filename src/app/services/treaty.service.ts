@@ -28,7 +28,7 @@ export class TreatyService {
       treatyType: 'PROPORTIONAL',
       coverageLimit: 5000000,
       startDate: '2025-01-01',
-      endDate: '2025-12-31',
+      endDate: '2026-01-31',
       status: 'ACTIVE',
       renewalDate: '2025-12-15'
     },
@@ -62,7 +62,7 @@ export class TreatyService {
       treatyType: 'PROPORTIONAL',
       coverageLimit: 80000000,
       startDate: '2025-01-01',
-      endDate: '2025-12-31',
+      endDate: '2026-01-31',
       status: 'ACTIVE',
       renewalDate: '2026-01-15'
     }

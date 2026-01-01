@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { QuickLinks } from '../../Admin/quick-links/quick-links';
+import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finance-dashboard';
 
 @Component({
-  selector: 'app-risk-cession-list',
+  selector: ' app-risk-cession-list',
    standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule,QuickLinks],
+  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule,FinanceDashboard],
   templateUrl: './risk-cession-list.html',
   styleUrl: './risk-cession-list.css',
 })

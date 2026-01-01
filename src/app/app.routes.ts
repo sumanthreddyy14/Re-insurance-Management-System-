@@ -15,9 +15,12 @@ import { FinanceSummary } from './features/Financial-Report/finance-summary/fina
 import { BalanceTable } from './features/Financial-Report/balance-table/balance-table';
 import { ExportButton } from './features/Financial-Report/export-button/export-button';
 import { FinancialReportList } from './features/Financial-Report/financial-report-list/financial-report-list';
+import { AuditLogView } from './features/risk-cession/audit-log-view/audit-log-view';
+import { FinanceDashboard } from './features/Financial-Report/finance-dashboard/finance-dashboard';
+import { Financelinks } from './features/Financial-Report/financelinks/financelinks';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'admin/dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'treaties', component: TreatyList },
   { path: 'treaties/new', component: TreatyForm },
   { path: 'treaties/:id/edit', component: TreatyForm },
@@ -28,6 +31,7 @@ export const routes: Routes = [
   { path: 'reinsurers/:id', component: ReinsurerDetail },
   { path: 'cessions', component: RiskCessionList },
   { path: 'cessions/new', component: RiskCession },
+  {path:'audit',component:AuditLogView},
   { path: 'recoveries', component: RecoveryList },
    { path: 'recoveries/new', component: RecoveryFormComponent }, 
    { path: 'recoveries/:id', component: RecoveryDetail },
@@ -35,5 +39,7 @@ export const routes: Routes = [
    { path: 'financerep', component: FinanceSummary },
    { path: 'balance', component: BalanceTable },
    { path: 'export', component: ExportButton },
-   { path: 'report', component: FinancialReportList }
+   { path: 'report', component: FinancialReportList },
+   {path:'finance/dashboard', component:FinanceDashboard},
+   {path:'dashboard', component:Financelinks}
 ];

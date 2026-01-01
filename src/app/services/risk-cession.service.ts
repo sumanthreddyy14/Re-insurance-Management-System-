@@ -1,32 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { RiskCession } from '../models/risk-cession.model';
+import { AuditLog, RiskCession } from '../models/risk-cession.model';
 
 @Injectable({ providedIn: 'root' })
 export class RiskCessionService {
   // private cessions: RiskCession[] = [];
   private cessions: RiskCession[] = [
-  {
-    cessionId: 'C001',
-    treatyId: 'T001',
-    policyId: 'P1001',
-    cededPercentage: 50,
-    cededPremium: 6000,
-    commission: 600,
-    createdAt: new Date().toISOString(),
-    createdBy: 'admin'
-  },
-  {
-    cessionId: 'C002',
-    treatyId: 'T002',
-    policyId: 'P1002',
-    cededPercentage: 40,
-    cededPremium: 3200,
-    commission: 320,
-    createdAt: new Date().toISOString(),
-    createdBy: 'admin'
-  }
-];
+    {
+      cessionId: 'C001',
+      treatyId: 'T001',
+      policyId: 'P1001',
+      cededPercentage: 50,
+      cededPremium: 6000,
+      commission: 600,
+      createdAt: new Date().toISOString(),
+      createdBy: 'admin'
+    },
+    {
+      cessionId: 'C002',
+      treatyId: 'T002',
+      policyId: 'P1002',
+      cededPercentage: 40,
+      cededPremium: 3200,
+      commission: 320,
+      createdAt: new Date().toISOString(),
+      createdBy: 'admin'
+    }
+  ];
+
+
+  private auditLogs: AuditLog[] = [
+    {
+      cessionId: 'C001',
+      timestamp: new Date().toISOString(),
+      action: 'Initial allocation of 50% to Treaty T001',
+      user: 'admin'
+    },
+    {
+      cessionId: 'C002',
+      timestamp: new Date().toISOString(),
+      action: 'Initial allocation of 40% to Treaty T002',
+      user: 'admin'
+    }
+  ];
 
 
   private policies: { policyId: string; premium: number }[] = [
@@ -35,7 +51,7 @@ export class RiskCessionService {
     { policyId: 'P1003', premium: 15000 }
   ];
 
-  private defaultCommissionRate = 0.1; 
+  private defaultCommissionRate = 0.1;
 
   listByTreaty(treatyId: string): Observable<RiskCession[]> {
     return of(this.cessions.filter(c => c.treatyId === treatyId));
@@ -49,12 +65,16 @@ export class RiskCessionService {
     return this.policies.find(p => p.policyId === policyId)?.premium;
   }
 
-  
+  auditTrail(cessionId: string): Observable<AuditLog[]> {
+    return of(this.auditLogs.filter(log => log.cessionId === cessionId));
+  }
+
+
   allocateRisk(params: {
     treatyId: string;
     policyId: string;
-    cededPercentage: number; 
-    commissionRate?: number; 
+    cededPercentage: number;
+    commissionRate?: number;
     createdBy: string;
   }): Observable<RiskCession> {
     const { treatyId, policyId, cededPercentage, commissionRate, createdBy } = params;
@@ -67,10 +87,11 @@ export class RiskCessionService {
       throw new Error(`Policy ${policyId} not found or missing premium.`);
     }
 
-    
+
     const cededPremium = Number((policyPremium * (cededPercentage / 100)).toFixed(2));
     const rate = commissionRate ?? this.defaultCommissionRate;
     const commission = Number((cededPremium * rate).toFixed(2));
+
 
     const cession: RiskCession = {
       cessionId: 'C' + (this.cessions.length + 1).toString().padStart(4, '0'),
@@ -84,7 +105,14 @@ export class RiskCessionService {
     };
 
     this.cessions.push(cession);
+    this.auditLogs.push({
+      cessionId: cession.cessionId,
+      timestamp: new Date().toISOString(),
+      action: `Allocated ${cededPercentage}% to treaty ${treatyId} (premium ${cededPremium})`,
+      user: createdBy
+    });
 
     return of(cession);
+
   }
 }

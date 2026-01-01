@@ -11,6 +11,7 @@ import { ExportButton } from '../export-button/export-button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FinanceDashboard } from '../finance-dashboard/finance-dashboard';
 
 @Component({
   selector: 'app-financial-report-list',
@@ -24,7 +25,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTableModule,   
     MatButtonModule,
     MatFormFieldModule,
-    MatDatepickerModule, MatNativeDateModule
+    MatDatepickerModule, MatNativeDateModule,FinanceDashboard
   ],
   templateUrl: './financial-report-list.html',
   styleUrl: './financial-report-list.css',

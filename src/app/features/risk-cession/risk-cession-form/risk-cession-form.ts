@@ -10,19 +10,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { QuickLinks } from '../../Admin/quick-links/quick-links';
+import { RiskCessionList } from '../risk-cession-list/risk-cession-list';
+import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finance-dashboard';
 
 @Component({
   selector: 'app-risk-cession-form',
   standalone: true,
   imports: [
     CommonModule,
-    QuickLinks,
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+   FinanceDashboard
   ],
   templateUrl: './risk-cession-form.html',
   styleUrl: './risk-cession-form.css',

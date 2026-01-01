@@ -8,3 +8,10 @@ export interface RiskCession {
   createdAt: string;   // ISO timestamp
   createdBy: string;   // username or ID
 }
+
+export interface AuditLog {
+  cessionId: string;
+  timestamp: string;
+  action: string;
+  user: string;
+}
