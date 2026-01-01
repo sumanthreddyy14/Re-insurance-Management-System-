@@ -18,9 +18,24 @@ import { FinancialReportList } from './features/Financial-Report/financial-repor
 import { AuditLogView } from './features/risk-cession/audit-log-view/audit-log-view';
 import { FinanceDashboard } from './features/Financial-Report/finance-dashboard/finance-dashboard';
 import { Financelinks } from './features/Financial-Report/financelinks/financelinks';
+import { LoginComponent } from './features/login/login';
+
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'admin-dashboard',
+    loadComponent: () => import('./features/Admin/admin-dashboard/admin-dashboard')
+      .then(m => m.AdminDashboard)
+  },
+  {
+    path: 'finance-dashboard',
+   
+    loadComponent: () => import('./features/Financial-Report/finance-dashboard/finance-dashboard')
+      .then(m => m.FinanceDashboard) 
+  },
+
   { path: 'treaties', component: TreatyList },
   { path: 'treaties/new', component: TreatyForm },
   { path: 'treaties/:id/edit', component: TreatyForm },
