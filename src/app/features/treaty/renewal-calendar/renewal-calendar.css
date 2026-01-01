@@ -3,10 +3,23 @@ mat-card {
   padding: 16px;
 }
 
+.page-bg {
+  min-height: 100vh;              /* full viewport height */
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(37, 99, 235, 0.22) 0%,
+    rgba(37, 99, 235, 0.12) 20%,
+    rgba(13, 19, 42, 0.85) 60%,
+    #0b1020 100%
+  );
+}
+
 mat-card-title {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 12px;
+  color: #1976d2;
 }
 
 table {
