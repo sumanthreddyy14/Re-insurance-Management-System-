@@ -32,7 +32,7 @@
 
         <div class="input-group" [class.error-field]="isSubmitted && f['password'].errors">
           <label>Password</label>
-          <input type="password" formControlName="password" placeholder="••••••••">
+          <input type="password" formControlName="password" placeholder="Enter password">
           <small class="warning" *ngIf="isSubmitted && f['password'].errors?.['required']">Password is required</small>
           <small class="warning" *ngIf="isSubmitted && f['password'].errors?.['minlength']">Must be at least 6 characters</small>
         </div>
