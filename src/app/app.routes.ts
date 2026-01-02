@@ -19,6 +19,9 @@ import { AuditLogView } from './features/risk-cession/audit-log-view/audit-log-v
 import { FinanceDashboard } from './features/Financial-Report/finance-dashboard/finance-dashboard';
 import { Financelinks } from './features/Financial-Report/financelinks/financelinks';
 import { LoginComponent } from './features/login/login';
+import { AnalyticsDashboard } from './features/Analytics/analytics-dashboard/analytics-dashboard';
+import { ManagementDashboard } from './features/Analytics/management-dashboard/management-dashboard';
+import { ComplianceReport } from './features/Analytics/compliance-report/compliance-report';
 
 
 export const routes: Routes = [
@@ -56,5 +59,8 @@ export const routes: Routes = [
    { path: 'export', component: ExportButton },
    { path: 'report', component: FinancialReportList },
    {path:'finance/dashboard', component:FinanceDashboard},
-   {path:'dashboard', component:Financelinks}
+   {path:'dashboard', component:Financelinks},
+   {path:'analytics-dash', component: AnalyticsDashboard},
+   {path:'manage-dash', component: ManagementDashboard},
+   {path:'compliance-report', component: ComplianceReport}
 ];
