@@ -7,6 +7,12 @@ mat-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.error{
+  color: red;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
 .page-bg {
   min-height: 100vh;              
   width: 100%;

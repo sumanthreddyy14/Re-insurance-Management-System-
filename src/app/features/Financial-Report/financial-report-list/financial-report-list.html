@@ -3,7 +3,7 @@
 <mat-card>
   <mat-card-title>Financial Reports</mat-card-title>
   <mat-card-content>
-    <!-- Filters to generate a new report -->
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
     <div class="filters">
       <mat-form-field appearance="outline">
         <mat-label>From</mat-label>
@@ -21,12 +21,12 @@
 
 
       <mat-form-field appearance="outline">
-        <mat-label>Treaty ID (optional)</mat-label>
+        <mat-label>Treaty ID</mat-label>
         <input matInput [(ngModel)]="treatyId" placeholder="e.g., T001">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Reinsurer ID (optional)</mat-label>
+        <mat-label>Reinsurer ID</mat-label>
         <input matInput [(ngModel)]="reinsurerId" placeholder="e.g., RIN01">
       </mat-form-field>
 

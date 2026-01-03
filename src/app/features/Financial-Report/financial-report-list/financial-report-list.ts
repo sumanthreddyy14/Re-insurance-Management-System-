@@ -46,21 +46,36 @@ export class FinancialReportList {
   }
 
   displayedColumns = ['reportId', 'generatedDate', 'cededPremiums', 'recoveries', 'outstanding', 'actions'];
+  errorMessage = '';
 
-
-generate(): void {
-  this.generating = true;
-
-  const filters: FinanceFilters = {
-    from: this.from ? this.from.toISOString() : undefined,
-    to: this.to ? this.to.toISOString() : undefined,
-    treatyId: this.treatyId,
-    reinsurerId: this.reinsurerId
-  };
-
-  this.financeService.generateReport(filters).subscribe({
-    next: () => (this.generating = false),
+  generate(): void {
+    this.errorMessage = '';
+    const filters: FinanceFilters = {
+      from: this.from ? this.from.toISOString() : undefined,
+      to: this.to ? this.to.toISOString() : undefined,
+      treatyId: this.treatyId?.trim(),
+      reinsurerId: this.reinsurerId?.trim()
+    };
+  // Rule 1: at least one filter required
+    if (!filters.from && !filters.to && !filters.treatyId && !filters.reinsurerId) {
+      this.errorMessage = 'Please select at least one filter to generate a report.';
+    return;
+    }
+    this.generating = true;
+    this.financeService.generateReport(filters).subscribe({
+    next: (r) => {
+      this.generating = false;
+      // Rule 2: no data found
+      if (
+        r.metrics.cededPremiums === 0 &&
+        r.metrics.recoveries === 0 &&
+        r.metrics.outstandingBalance === 0
+      ) {
+        this.errorMessage = 'Please enter valid details.';
+        this.reports.shift();
+      }
+    },
     error: () => (this.generating = false)
-  });
-}
+    });
+  }
 }

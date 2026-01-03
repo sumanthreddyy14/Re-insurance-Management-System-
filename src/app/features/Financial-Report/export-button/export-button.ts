@@ -25,9 +25,16 @@ export class ExportButton {
 
   export(): void {
     // 1) Export an existing report
+    // 1) Export an existing report
     if (this.report) {
-      this.download(this.financeService.exportReportCSV(this.report), this.report.reportId);
+      const m = this.report.metrics;
+   // block fake 0-value reports
+    if (m.cededPremiums === 0 && m.recoveries === 0 && m.outstandingBalance === 0) {
+      alert('Invalid report. Please generate a valid report first.');
       return;
+    }
+    this.download(this.financeService.exportReportCSV(this.report), this.report.reportId);
+    return;
     }
     // 2) Export table rows
     if (this.rows && this.rows.length) {
