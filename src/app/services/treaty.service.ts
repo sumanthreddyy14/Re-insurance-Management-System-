@@ -93,4 +93,14 @@ export class TreatyService {
   listAll(): Treaty[] { 
     return this.dummy; 
   }
+  save(treaty: Treaty): Observable<Treaty> { 
+    const index = this.dummy.findIndex(t => t.treatyId === treaty.treatyId); 
+    if (index > -1) { 
+      // update existing 
+      this.dummy[index] = treaty; 
+    } else {
+       // add new 
+       this.dummy.push(treaty); 
+      } return of(treaty); 
+    }
 }

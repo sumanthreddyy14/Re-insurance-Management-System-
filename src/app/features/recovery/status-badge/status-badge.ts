@@ -11,4 +11,3 @@ import { Component, Input } from '@angular/core';
 export class StatusBadge {
 @Input() status: 'PENDING' | 'COMPLETED' | 'DISPUTED' = 'PENDING';
 }
-  

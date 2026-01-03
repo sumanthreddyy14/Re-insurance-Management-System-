@@ -36,7 +36,7 @@ mat-card-title {
 }
 
 /* Filters row */
-.filters {
+/* .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -54,6 +54,24 @@ mat-card-title {
   font-weight: 600;
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.2s ease;
+} */
+
+.filters {
+  display: flex;
+  flex-wrap: nowrap;       /* prevent wrapping */
+  gap: 16px;               /* spacing between items */
+  align-items: center;     /* vertical alignment */
+  justify-content: flex-start;
+}
+
+.filters mat-form-field {
+  flex: 0 0 180px;         /* fixed width for dropdowns/inputs */
+}
+
+.filters button,
+.filters a[mat-button] {
+  flex: 0 0 auto; 
+  border: 1px solid #f57c00;         /* buttons stay compact */
 }
 
 .filters button:hover,
@@ -61,18 +79,53 @@ mat-card-title {
   transform: scale(1.05);
 }
 
-/* Full-width search bar */
 .full {
   width: 100%;
+  margin: 0px 0;
 }
 
+/* Style the mat-form-field itself */
+.full.mat-form-field {
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 4px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.full.mat-form-field:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+/* Input styling */
 .full input {
-  padding: 10px;
-  transition: box-shadow 0.3s ease;
+  padding: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  background: transparent;
+  outline: none;
+  transition: color 0.3s ease;
 }
 
+/* Placeholder styling */
+.full input::placeholder {
+  color: #9ca3af; /* soft gray */
+  font-style: italic;
+}
+
+/* Focus effect */
 .full input:focus {
-  box-shadow: 0 0 6px rgba(63, 81, 181, 0.5);
+  color: #1e3a8a; /* deep blue text */
+  box-shadow: none;
+}
+
+/* Add a glowing border when focused */
+.full.mat-form-field.mat-focused {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
 }
 
 /* Table styling */
@@ -110,18 +163,37 @@ tr.mat-row:hover {
   cursor: pointer;
 }
 
-/* Chips for status */
+/* Base chip styling */
 mat-chip {
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  border-radius: 6px;
-  padding: 4px 10px;
-  transition: transform 0.2s ease;
+  padding: 6px 14px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 mat-chip:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
+
+/* Specific statuses */
+mat-chip[color="primary"] {
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  color: #fff;
+}
+
+mat-chip[color="warn"] {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: #fff;
+}
+
+mat-chip[color="accent"] {
+  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+  color: #fff;
+}
+
 
 /* Actions buttons */
 td.mat-cell a {
@@ -129,11 +201,13 @@ td.mat-cell a {
   font-weight: 500;
   border-radius: 6px;
   text-transform: capitalize;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+   transition: background-color 0.3s ease, transform 0.2s ease;
+   border: 1px solid #f57c00;
 }
 
 td.mat-cell a:hover {
   transform: translateY(-2px);
+   border: 1px solid #f57c00;
 }
 
 /* Paginator spacing */

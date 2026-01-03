@@ -8,10 +8,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TreatyService } from '../../../services/treaty.service';
 import { ActivatedRoute } from '@angular/router';
 import { QuickLinks } from '../../Admin/quick-links/quick-links';
+import { Treaty } from '../../../models/treaty.model';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class TreatyForm {
   constructor(
     private fb: FormBuilder,
     private treatyService: TreatyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router 
   ) {
     this.form = this.fb.group({
       treatyId: ['', Validators.required],
@@ -61,11 +63,11 @@ export class TreatyForm {
       });
     }
   }
-
-  save(): void {
-    if (this.form.valid) {
-      const treaty = this.form.value;
-      console.log('Saving treaty', treaty);
-    }
+  save(): void { if (this.form.valid) { 
+    const treaty: Treaty = this.form.value; 
+    this.treatyService.save(treaty).subscribe(() => { 
+     this.router.navigate(['/treaties']); 
+    }); 
   }
+}
 }
