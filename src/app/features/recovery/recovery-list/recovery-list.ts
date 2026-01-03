@@ -9,12 +9,13 @@ import { RecoveryService } from '../../../services/recovery.service';
 import { StatusBadge } from '../status-badge/status-badge';
 import { QuickLinks } from '../../Admin/quick-links/quick-links';
 import { MatIconModule } from '@angular/material/icon';
+import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finance-dashboard';
 
 
 @Component({
   selector: 'app-recovery-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule,StatusBadge,QuickLinks, MatIconModule],
+  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule,StatusBadge,FinanceDashboard, MatIconModule],
   templateUrl: './recovery-list.html',
   styleUrls: ['./recovery-list.css']
 })

@@ -24,7 +24,7 @@ import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finan
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-   FinanceDashboard
+   QuickLinks
   ],
   templateUrl: './risk-cession-form.html',
   styleUrl: './risk-cession-form.css',
