@@ -10,7 +10,12 @@
     #0b1020 100%
   );
 }
- 
+ .filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
 
 mat-card {
   margin: 20px auto;

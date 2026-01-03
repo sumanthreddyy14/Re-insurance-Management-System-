@@ -11,6 +11,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MaterialModule } from '../../../models/material.module';
 import { MatChipsModule } from '@angular/material/chips';
 import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finance-dashboard';
+import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @Component({
@@ -20,12 +23,13 @@ import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finan
   imports: [
     CommonModule,
     MatCardModule,
-    MatTableModule, // 👈 REQUIRED for mat-table structural directives
+    MatTableModule,
     MatButtonModule,
     MatFormFieldModule,
     FinanceDashboard,
     MaterialModule,
     MatChipsModule,
+    FormsModule,  MatDatepickerModule, MatNativeDateModule
 ],
   styleUrls: ['./compliance-report.css']
 })
@@ -37,10 +41,6 @@ export class ComplianceReport implements OnInit {
 
   // Default filters/rules—wire to a filter bar later if needed
   filters: FinanceFilters = {
-    from: '2025-01-01',
-    to: '2025-12-31',
-    // treatyId?: 'T001',
-    // reinsurerId?: 'R001'
   };
 
   rules: ComplianceRules = {
@@ -54,27 +54,47 @@ export class ComplianceReport implements OnInit {
 
   constructor(private compliance: ComplianceService) {}
 
+  
+
   ngOnInit(): void {
     this.refresh();
   }
 
-  refresh(): void {
-    this.loading = true;
-    this.errorMsg = undefined;
+  clearFilters(): void {
+  this.filters = { from: '', to: '' };
+  this.issues = [];
+  this.summary = { LOW: 0, MEDIUM: 0, HIGH: 0, total: 0 };
+}
+clearTable(): void {
+  this.issues = [];
+  this.summary = { LOW: 0, MEDIUM: 0, HIGH: 0, total: 0 };
+}
 
-    this.compliance.listIssues(this.filters, this.rules).subscribe({
-      next: (res: AnalyticsData<ComplianceIssue[]>) => {
-        this.issues = res.data ?? [];
-        this.summary = this.compliance.summarize(this.issues);
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.errorMsg = 'Failed to load compliance issues.';
-        this.loading = false;
-      }
-    });
+refresh(): void {
+  this.loading = true;
+  this.errorMsg = undefined;
+
+  // If filters are empty, don't fetch anything
+  if (!this.filters.from && !this.filters.to) {
+    this.issues = [];
+    this.summary = { LOW: 0, MEDIUM: 0, HIGH: 0, total: 0 };
+    this.loading = false;
+    return;
   }
+
+  this.compliance.listIssues(this.filters, this.rules).subscribe({
+    next: (res: AnalyticsData<ComplianceIssue[]>) => {
+      this.issues = res.data ?? [];
+      this.summary = this.compliance.summarize(this.issues);
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error(err);
+      this.errorMsg = 'Failed to load compliance issues.';
+      this.loading = false;
+    }
+  });
+}
 
   exportCSV(): void {
     const blob = this.compliance.exportIssuesCSV(this.issues);

@@ -14,9 +14,26 @@
   </mat-chip-set>
 </mat-card-subtitle>
 
+<!-- Date Filters -->
+<div class="filters">
+  <mat-form-field appearance="outline">
+    <mat-label>From Date</mat-label>
+    <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="filters.from" (dateChange)="refresh()" />
+    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+    <mat-datepicker #pickerFrom></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>To Date</mat-label>
+    <input matInput [matDatepicker]="pickerTo" [(ngModel)]="filters.to" (dateChange)="refresh()" />
+    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+    <mat-datepicker #pickerTo></mat-datepicker>
+  </mat-form-field>
+</div>
+
   <!-- Actions -->
   <div class="actions">
-    <button mat-stroked-button color="primary" (click)="refresh()">
+    <button mat-stroked-button color="primary" (click)="clearTable()">
       <mat-icon>refresh</mat-icon> Refresh
     </button>
     <button mat-raised-button color="accent" (click)="exportCSV()">
