@@ -3,6 +3,6 @@ export interface Recovery {
   claimId: string;
   treatyId: string;
   recoveryAmount: number;
-  recoveryDate: string; // ISO date
-  status: 'PENDING' | 'COMPLETED';
+  recoveryDate: string;
+  status: 'PENDING' | 'COMPLETED' | 'DISPUTED';
 }

@@ -24,7 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule, MatButtonModule, MatIconModule, MatSelectModule,
     MatDatepickerModule, MatNativeDateModule, MatCardModule,
     MatSnackBarModule, MatChipsModule, MatDialogModule, MatTooltipModule,
-    MatStepperModule, MatListModule, MatProgressSpinnerModule
+    MatStepperModule, MatListModule, MatProgressSpinnerModule, MatIconModule
   ]
 })
 export class MaterialModule {}

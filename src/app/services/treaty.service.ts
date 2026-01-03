@@ -52,6 +52,17 @@ export class TreatyService {
       coverageLimit: 7000000,
       startDate: '2023-01-01',
       endDate: '2023-12-31',
+      status: 'EXPIRED',
+      renewalDate: '2024-10-15'
+    },
+     {
+      treatyId: 'T003',
+      reinsurerId: 'R003',
+      reinsurerName: 'John reddy',
+      treatyType: 'PROPORTIONAL',
+      coverageLimit: 5000000,
+      startDate: '2023-01-01',
+      endDate: '2023-12-31',
       status: 'ARCHIVED',
       renewalDate: '2024-10-15'
     },

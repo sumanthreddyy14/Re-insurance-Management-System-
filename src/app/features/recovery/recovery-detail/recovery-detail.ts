@@ -23,13 +23,11 @@ export class RecoveryDetail implements OnInit {
     private route: ActivatedRoute,
     private recoveryService: RecoveryService
   ) {}
-
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.recoveryService.list().subscribe(recoveries => {
-        this.recovery = recoveries.find(r => r.recoveryId === id);
-      });
-    }
+  const id = this.route.snapshot.paramMap.get('id');
+  if (id) {
+    this.recovery = this.recoveryService.getById(id);
   }
+}
+
 }

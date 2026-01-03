@@ -43,7 +43,7 @@
 //   }
 // }
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 import { Recovery } from '../models/recovery.model';
 import { TreatyService } from './treaty.service';
 import { RiskCessionService } from './risk-cession.service';
@@ -53,6 +53,7 @@ import { Treaty } from '../models/treaty.model';
 @Injectable({ providedIn: 'root' })
 export class RecoveryService {
   private recoveries: Recovery[] = [];
+  private recoveries$ = new BehaviorSubject<Recovery[]>([]);
   constructor(
     private treatyService: TreatyService,
     private cessionService: RiskCessionService
@@ -81,6 +82,7 @@ export class RecoveryService {
           }
         });
         this.recoveries = recoveries;
+        this.recoveries$.next(this.recoveries);
         return recoveries;
       })
     );
@@ -89,5 +91,19 @@ export class RecoveryService {
  countPendingRecoveries(): number { 
   return this.recoveries.filter((r: Recovery) => r.status === 'PENDING').length; 
 }
+flagDispute(id: string): void {
+  const rec = this.recoveries.find(r => r.recoveryId === id);
+  if (rec) {
+    rec.status = 'DISPUTED';
+    this.recoveries$.next([...this.recoveries]);
+  }
+}
+getRecoveries(): Observable<Recovery[]> { 
+  return this.recoveries$.asObservable(); 
+}
+getById(id: string): Recovery | undefined { 
+  return this.recoveries.find(r => r.recoveryId === id); 
+}
+
   
 }

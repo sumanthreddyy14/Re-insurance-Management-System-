@@ -18,4 +18,10 @@
     color: #2e7d32;
     border: 1px solid #2e7d32;
   }
+  &.disputed {
+  background-color: #fff3e0;
+    color: #f57c00;
+    border: 1px solid #f57c00;
+}
+
 }

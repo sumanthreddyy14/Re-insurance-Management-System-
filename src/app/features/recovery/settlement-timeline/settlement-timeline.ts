@@ -11,5 +11,5 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './settlement-timeline.css',
 })
 export class SettlementTimeline {
-@Input() timeline: { date: string; label: string; status: 'PENDING' | 'COMPLETED' }[] = [];
+@Input() timeline: { date: string; label: string; status: 'PENDING' | 'COMPLETED' | 'DISPUTED' }[] = [];
 }

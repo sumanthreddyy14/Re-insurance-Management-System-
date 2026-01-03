@@ -8,12 +8,13 @@ import { Recovery } from '../../../models/recovery.model';
 import { RecoveryService } from '../../../services/recovery.service';
 import { StatusBadge } from '../status-badge/status-badge';
 import { QuickLinks } from '../../Admin/quick-links/quick-links';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-recovery-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule,StatusBadge,QuickLinks],
+  imports: [CommonModule, RouterModule, MatCardModule, MatTableModule, MatButtonModule,StatusBadge,QuickLinks, MatIconModule],
   templateUrl: './recovery-list.html',
   styleUrls: ['./recovery-list.css']
 })
@@ -24,10 +25,17 @@ export class RecoveryList implements OnInit {
   constructor(private recoveryService: RecoveryService) {}
 
 ngOnInit(): void {
-  this.recoveryService.list().subscribe(res => {
-    console.log('Recoveries:', res); // should log derived recoveries
+  this.recoveryService.list().subscribe(); // populate initial data
+  this.recoveryService.getRecoveries().subscribe(res => {
     this.dataSource.data = res;
   });
 }
+
+flagDispute(row: Recovery): void {
+  this.recoveryService.flagDispute(row.recoveryId);
+}
+
+
+
 
 }

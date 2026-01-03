@@ -43,6 +43,9 @@
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let row">
           <a mat-button color="primary" [routerLink]="['/recoveries', row.recoveryId]">View</a>
+          <button mat-stroked-button color="warn" (click)="flagDispute(row)"> 
+            <mat-icon>flag</mat-icon> Dispute 
+          </button>
         </td>
       </ng-container>
 
