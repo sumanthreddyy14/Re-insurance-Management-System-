@@ -2,7 +2,7 @@
 <app-quick-links></app-quick-links>
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="save()">
-    <!-- Treaty ID -->
+  
     <div class="form-group">
       <label>Treaty ID</label>
       <input type="text" formControlName="treatyId" />
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <!-- Reinsurer Name -->
+   
     <div class="form-group">
       <label>Reinsurer Name</label>
       <input type="text" formControlName="reinsurerName" />
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <!-- Treaty Type -->
+   
     <div class="form-group">
       <label>Treaty Type</label>
       <select formControlName="treatyType">
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <!-- Coverage Limit -->
+    
     <div class="form-group">
       <label>Coverage Limit</label>
       <input type="number" formControlName="coverageLimit" />
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <!-- Start Date -->
+   
     <div class="form-group">
       <label>Start Date</label>
       <input type="date" formControlName="startDate" />
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <!-- End Date -->
+   
     <div class="form-group">
       <label>End Date</label>
       <input type="date" formControlName="endDate" />
@@ -75,7 +75,7 @@
       </div>
     </div>
 
-    <!-- Status -->
+    
     <div class="form-group">
       <label>Status</label>
       <select formControlName="status">
@@ -90,10 +90,10 @@
         </small>
       </div>
     </div>
-
-    <!-- Submit Button -->
-    <button  type="submit" [disabled]="form.invalid">Save Treaty</button>
-    <a routerLink="/treaties">Cancel</a>
+<div class="form-actions">
+  <button type="submit" [disabled]="form.invalid">Save Treaty</button>
+  <button type="button" color="primary" [routerLink]="['/treaties']">Cancel</button>
+</div>
   </form>
 </div>
 </div>
