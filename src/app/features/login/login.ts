@@ -54,6 +54,6 @@ export class LoginComponent {
         alert('Registration Successful');
         this.toggleMode();
       }
-    }, 1000);
+    }, 100);
   }
 }

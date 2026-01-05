@@ -58,7 +58,7 @@ export class TreatyForm {
     if (id) {
       this.treatyService.getById(id).subscribe(t => {
         if (t) {
-          this.form.patchValue(t); // ✅ pre-fill form fields
+          this.form.patchValue(t); // will fill the previous values
         }
       });
     }

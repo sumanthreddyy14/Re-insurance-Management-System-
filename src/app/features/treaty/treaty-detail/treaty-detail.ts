@@ -18,14 +18,6 @@ export class TreatyDetail implements OnInit {
 
   constructor(private route: ActivatedRoute, private treatyService: TreatyService) {}
 
-  // ngOnInit(): void {
-  //   const id = this.route.snapshot.paramMap.get('id');
-  //   if (id) {
-  //     this.treatyService.list().subscribe(all => {
-  //       this.treaty = all.find(t => t.treatyId === id);
-  //     });
-  //   }
-  // }
   ngOnInit(): void {
   const id = this.route.snapshot.paramMap.get('id');
   if (id) {

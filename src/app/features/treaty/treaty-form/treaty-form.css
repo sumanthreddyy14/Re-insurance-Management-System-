@@ -1,4 +1,4 @@
-/* Container */
+
 .form-container {
   max-width: 800px;
   margin: 32px auto;
@@ -10,7 +10,7 @@
 }
 
 .page-bg {
-  min-height: 100vh;              /* full viewport height */
+  min-height: 100vh;             
   width: 100%;
   background: linear-gradient(
     180deg,
@@ -26,14 +26,14 @@
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
-/* Form grid */
+
 form {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
-/* Each field group */
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@ form {
   letter-spacing: 0.5px;
 }
 
-/* Inputs and selects */
+
 .form-group input,
 .form-group select {
   padding: 10px 12px;
@@ -64,7 +64,7 @@ form {
   outline: none;
 }
 
-/* Error messages */
+
 .error {
   margin-top: 4px;
   color: #d32f2f;
@@ -81,7 +81,7 @@ form {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Buttons */
+
 button[type="submit"] {
   grid-column: 1 / -1;
   justify-self: end;
@@ -113,8 +113,23 @@ a {
   font-weight: 500;
   margin-left: 12px;
   transition: color 0.3s ease;
+  border: #d32f2f;
 }
 
 a:hover {
   color: #0d47a1;
+}
+
+.form-actions {
+  grid-column: 1 / -1;   
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;            
+}
+
+.form-actions button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
 }

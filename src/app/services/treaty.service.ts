@@ -99,7 +99,7 @@ export class TreatyService {
       // update existing 
       this.dummy[index] = treaty; 
     } else {
-       // add new 
+      //  to add
        this.dummy.push(treaty); 
       } return of(treaty); 
     }
