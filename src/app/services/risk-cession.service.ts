@@ -68,7 +68,7 @@ export class RiskCessionService {
   auditTrail(cessionId: string): Observable<AuditLog[]> {
     return of(this.auditLogs.filter(log => log.cessionId === cessionId));
   }
-
+  
 
   allocateRisk(params: {
     treatyId: string;
