@@ -77,7 +77,7 @@ export class RecoveryService {
               treatyId: treaty.treatyId,
               recoveryAmount: c.cededPremium, 
               recoveryDate: new Date().toISOString(),
-              status: 'PENDING'
+              status: 'PENDING' 
             });
           }
         });

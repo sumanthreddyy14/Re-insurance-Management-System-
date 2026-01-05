@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-quick-links',
@@ -12,4 +12,10 @@ import { RouterModule } from '@angular/router';
 })
 export class QuickLinks {
 
+  constructor(private router: Router) {}
+ 
+  onLogout() {
+ 
+  this.router.navigate(['/login']);
+  }
 }

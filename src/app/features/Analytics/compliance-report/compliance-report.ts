@@ -22,7 +22,8 @@ import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finan
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 import * as echarts from 'echarts';
 
 @Component({
@@ -76,7 +77,7 @@ export class ComplianceReport implements OnInit, AfterViewInit, OnDestroy {
   private lossRatioValue = 83.5; // %
   private lossRatioMax = 150;    // gauge max domain
 
-  constructor(private compliance: ComplianceService) {}
+  constructor(private compliance: ComplianceService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
     this.refresh();
@@ -84,6 +85,7 @@ export class ComplianceReport implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     // Defer to ensure the Material card has computed dimensions
+    if (isPlatformBrowser(this.platformId)) {
     setTimeout(() => {
       this.initCharts();
       // Show something immediately
@@ -101,13 +103,15 @@ export class ComplianceReport implements OnInit, AfterViewInit, OnDestroy {
       window.addEventListener('resize', this.onWindowResize);
     }, 0);
   }
-
+  }
   ngOnDestroy(): void {
+    if (isPlatformBrowser(this.platformId)) {
     window.removeEventListener('resize', this.onWindowResize);
     this.resizeObserver?.disconnect();
     this.treatyChart?.dispose();
     this.lossGauge?.dispose();
   }
+}
 
   // ---------- Chart Initialization ----------
   private initCharts(): void {
@@ -248,6 +252,7 @@ export class ComplianceReport implements OnInit, AfterViewInit, OnDestroy {
   }
 
   exportCSV(): void {
+    if (isPlatformBrowser(this.platformId)) {
     const blob = this.compliance.exportIssuesCSV(this.issues);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -256,7 +261,7 @@ export class ComplianceReport implements OnInit, AfterViewInit, OnDestroy {
     a.click();
     URL.revokeObjectURL(url);
   }
-
+  }
   trackById(_: number, i: ComplianceIssue) { return i.id; }
 }
 ``
