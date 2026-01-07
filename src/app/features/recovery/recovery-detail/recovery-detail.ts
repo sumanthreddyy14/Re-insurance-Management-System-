@@ -8,11 +8,12 @@ import { RecoveryService } from '../../../services/recovery.service';
 import { SettlementTimeline } from '../settlement-timeline/settlement-timeline';
 import { StatusBadge } from '../status-badge/status-badge';
 import { QuickLinks } from '../../Admin/quick-links/quick-links';
+import { FinanceDashboard } from '../../Financial-Report/finance-dashboard/finance-dashboard';
 
 @Component({
   selector: 'app-recovery-detail',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule,RouterLink,SettlementTimeline,StatusBadge,QuickLinks],
+  imports: [CommonModule, MatCardModule, MatButtonModule,RouterLink,SettlementTimeline,StatusBadge,FinanceDashboard],
   templateUrl: './recovery-detail.html',
   styleUrls: ['./recovery-detail.css']
 })
