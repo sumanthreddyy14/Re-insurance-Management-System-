@@ -35,27 +35,6 @@ mat-card-title {
   letter-spacing: 0.5px;
 }
 
-/* Filters row */
-/* .filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  align-items: flex-end;
-}
-
-.filters mat-form-field {
-  flex: 1 1 200px;
-  min-width: 180px;
-}
-
-.filters button,
-.filters a[mat-button] {
-  height: 44px;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-} */
-
 .filters {
   display: flex;
   flex-wrap: nowrap;       /* prevent wrapping */

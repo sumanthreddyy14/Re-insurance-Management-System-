@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService, UserInfo } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-quick-links',
@@ -12,10 +13,13 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class QuickLinks {
 
-  constructor(private router: Router) {}
+  user: UserInfo | null = null;
+  constructor(private router: Router,private auth: AuthService) {
+    this.user = this.auth.getUser();
+  }
  
   onLogout() {
- 
+  this.auth.clearUser();
   this.router.navigate(['/login']);
   }
 }

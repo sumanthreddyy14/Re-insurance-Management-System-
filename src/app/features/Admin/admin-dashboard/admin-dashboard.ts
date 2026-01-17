@@ -23,10 +23,9 @@ export class AdminDashboard {
 constructor(private treatyService: TreatyService, private recoveryService: RecoveryService) {}
 ngOnInit(): void {
   this.treatyService.list().subscribe(treaties => {
-    // Count active treaties
+   
     this.activeTreaties = treaties.filter(t => t.status === 'ACTIVE').length;
-
-    // Map expired treaties into the simplified shape for ExpiryAlertComponent
+    
     this.expiredTreaties = treaties
       .filter(t => t.status === 'EXPIRED')
       .map(t => ({
