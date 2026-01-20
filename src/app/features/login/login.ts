@@ -68,24 +68,4 @@ onSubmit() {
     }
   }, 100);
 }
-
-
-
-
-  // onSubmit() {
-  //   this.isSubmitted = true;
-  //   if (this.loginForm.invalid) return;
-
-  //   this.loading = true;
-  //   setTimeout(() => {
-  //     this.loading = false;
-  //     const { role } = this.loginForm.value;
-  //     if (!this.isSignUp) {
-  //       this.router.navigate([role === 'admin' ? '/admin-dashboard' : '/dashboard']);
-  //     } else {
-  //       alert('Registration Successful');
-  //       this.toggleMode();
-  //     }
-  //   }, 100);
-  // }
 }

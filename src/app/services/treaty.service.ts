@@ -83,6 +83,11 @@ export class TreatyService {
     return of(this.dummy);
   }
 
+  // list(): Observable<Treaty[]> {
+  //   return this.http.get<Treaty[]>('http://localhost:8080/api/v1/treaties');
+  // }
+
+
   getById(id: string): Observable<Treaty | undefined> {
     return of(this.dummy.find(t => t.treatyId === id));
   }

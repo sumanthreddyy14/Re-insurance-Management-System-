@@ -22,6 +22,7 @@ import { LoginComponent } from './features/login/login';
 import { AnalyticsDashboard } from './features/Analytics/analytics-dashboard/analytics-dashboard';
 import { ManagementDashboard } from './features/Analytics/management-dashboard/management-dashboard';
 import { ComplianceReport } from './features/Analytics/compliance-report/compliance-report';
+import { AdminGuard, FinanceGuard } from './services/admin.guard';
 
 
 export const routes: Routes = [
@@ -30,37 +31,75 @@ export const routes: Routes = [
   {
     path: 'admin-dashboard',
     loadComponent: () => import('./features/Admin/admin-dashboard/admin-dashboard')
-      .then(m => m.AdminDashboard)
+      .then(m => m.AdminDashboard),
+      canActivate: [AdminGuard]
   },
   {
     path: 'finance-dashboard',
    
     loadComponent: () => import('./features/Financial-Report/finance-dashboard/finance-dashboard')
-      .then(m => m.FinanceDashboard) 
+      .then(m => m.FinanceDashboard),
+      canActivate: [FinanceGuard] 
   },
 
-  { path: 'treaties', component: TreatyList },
-  { path: 'treaties/new', component: TreatyForm },
-  { path: 'treaties/:id/edit', component: TreatyForm },
-  { path: 'treaties/:id', component: TreatyDetail},
-  { path: 'treaties/renewals', component: RenewalCalendar },
-  { path: 'renewals', component: RenewalCalendar },
-  { path: 'reinsurers', component: ReinsurerList },
-  { path: 'reinsurers/:id', component: ReinsurerDetail },
-  { path: 'cessions', component: RiskCessionList },
-  { path: 'cessions/new', component: RiskCession },
-  {path:'audit',component:AuditLogView},
-  { path: 'recoveries', component: RecoveryList },
-   { path: 'recoveries/new', component: RecoveryFormComponent }, 
-   { path: 'recoveries/:id', component: RecoveryDetail },
-   { path: 'admin/dashboard', component: AdminDashboard },
-   { path: 'financerep', component: FinanceSummary },
-   { path: 'balance', component: BalanceTable },
-   { path: 'export', component: ExportButton },
-   { path: 'report', component: FinancialReportList },
-   {path:'finance/dashboard', component:FinanceDashboard},
-   {path:'dashboard', component:Financelinks},
-   {path:'analytics-dash', component: AnalyticsDashboard},
-   {path:'manage-dash', component: ManagementDashboard},
-   {path:'compliance-report', component: ComplianceReport}
+  // { path: 'treaties', component: TreatyList },
+  // { path: 'treaties/new', component: TreatyForm },
+  // { path: 'treaties/:id/edit', component: TreatyForm },
+  // { path: 'treaties/:id', component: TreatyDetail},
+  // { path: 'treaties/renewals', component: RenewalCalendar },
+  // { path: 'renewals', component: RenewalCalendar },
+  // { path: 'reinsurers', component: ReinsurerList },
+  // { path: 'reinsurers/:id', component: ReinsurerDetail },
+  // { path: 'cessions', component: RiskCessionList },
+  // { path: 'cessions/new', component: RiskCession },
+  // {path:'audit',component:AuditLogView},
+  // { path: 'recoveries', component: RecoveryList },
+  //  { path: 'recoveries/new', component: RecoveryFormComponent }, 
+  //  { path: 'recoveries/:id', component: RecoveryDetail },
+  //  { path: 'admin/dashboard', component: AdminDashboard },
+  //  { path: 'financerep', component: FinanceSummary },
+  //  { path: 'balance', component: BalanceTable },
+  //  { path: 'export', component: ExportButton },
+  //  { path: 'report', component: FinancialReportList },
+  //  {path:'finance/dashboard', component:FinanceDashboard},
+  //  {path:'dashboard', component:Financelinks},
+  //  {path:'analytics-dash', component: AnalyticsDashboard},
+  //  {path:'manage-dash', component: ManagementDashboard},
+  //  {path:'compliance-report', component: ComplianceReport}
+
+
+  
+  // Admin-only routes
+  { path: 'admin/dashboard', component: AdminDashboard, canActivate: [AdminGuard] },
+  { path: 'treaties', component: TreatyList, canActivate: [AdminGuard] },
+  { path: 'treaties/new', component: TreatyForm, canActivate: [AdminGuard] },
+  { path: 'treaties/:id/edit', component: TreatyForm, canActivate: [AdminGuard] },
+  { path: 'treaties/:id', component: TreatyDetail, canActivate: [AdminGuard] },
+  { path: 'treaties/renewals', component: RenewalCalendar, canActivate: [AdminGuard] },
+  { path: 'renewals', component: RenewalCalendar, canActivate: [AdminGuard] },
+  { path: 'reinsurers', component: ReinsurerList, canActivate: [AdminGuard] },
+  { path: 'reinsurers/:id', component: ReinsurerDetail, canActivate: [AdminGuard] },
+  { path: 'cessions/new', component: RiskCession, canActivate: [AdminGuard] },
+  { path: 'audit', component: AuditLogView, canActivate: [AdminGuard] },
+  { path: 'recoveries/new', component: RecoveryFormComponent, canActivate: [AdminGuard] },
+
+  // Finance-only routes
+  { path: 'report', component: FinancialReportList, canActivate: [FinanceGuard] },
+  { path: 'recoveries', component: RecoveryList, canActivate: [FinanceGuard] },
+  { path: 'balance', component: BalanceTable, canActivate: [FinanceGuard] },
+  { path: 'export', component: ExportButton, canActivate: [FinanceGuard] },
+  { path: 'financerep', component: FinanceSummary, canActivate: [FinanceGuard] },
+  { path: 'finance/dashboard', component: FinanceDashboard, canActivate: [FinanceGuard] },
+  { path: 'cessions', component: RiskCessionList, canActivate: [FinanceGuard] },
+  { path: 'dashboard', component: Financelinks, canActivate: [FinanceGuard] },
+  { path: 'recoveries/:id', component: RecoveryDetail, canActivate: [FinanceGuard]  },
+  { path: 'analytics-dash', component: AnalyticsDashboard, canActivate: [FinanceGuard] },
+  { path: 'manage-dash', component: ManagementDashboard, canActivate: [FinanceGuard] },
+  { path: 'compliance-report', component: ComplianceReport, canActivate: [FinanceGuard] },
+
+  { path: 'not-authorized', component: LoginComponent } // or a dedicated NotAuthorizedComponent
+
+
+
+
 ];
